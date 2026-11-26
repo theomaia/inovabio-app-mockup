@@ -1,0 +1,39 @@
+# Publica o mockup no GitHub Pages a cada push na branch main.
+# Funciona nos dois jeitos de montar o repositório:
+#  - repositório só com o mockup (index.html na raiz), ou
+#  - repositório do projeto inteiro, com o mockup em app_mockup/
+#    (nesse caso, copie esta pasta .github para a raiz do repositório).
+name: Publicar mockup no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descobrir a pasta do mockup
+        id: pasta
+        run: |
+          if [ -f app_mockup/index.html ]; then echo "dir=app_mockup" >> "$GITHUB_OUTPUT"; else echo "dir=." >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.pasta.outputs.dir }}
+      - id: deploy
+        uses: actions/deploy-pages@v4
