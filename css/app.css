@@ -1,29 +1,39 @@
 /* ==================================================================
-   InovaBio · app do estojo térmico — estilos do protótipo
+   Nimblit · caixa térmica portátil (InovaBio) — estilos do protótipo
+   Identidade visual: navy #0B2644, azul #1D6FB8, ciano #5ED8EF,
+   claro #E3ECF5, fundo #F2F3F7; tipografia Archivo (larga nos títulos).
    Tokens em variáveis CSS; modo claro/escuro por data-tema no <html>.
    ================================================================== */
 :root {
-  --fonte: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fonte: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --largura-titulo: 116%;
 
-  --fundo: #f3f7f9;
-  --fundo-grad: radial-gradient(120% 60% at 50% 0%, #d7edf2 0%, #e9f3f6 45%, #f3f7f9 75%);
+  --marca-navy: #0b2644;
+  --marca-azul: #1d6fb8;
+  --marca-ciano: #5ed8ef;
+  --marca-claro: #e3ecf5;
+  --logo-simbolo: var(--marca-azul);
+  --logo-palavra: var(--marca-navy);
+
+  --fundo: #f2f3f7;
+  --fundo-grad: radial-gradient(120% 60% at 50% 0%, #d6e4f3 0%, #e3ecf5 42%, #f2f3f7 75%);
   --sup: #ffffff;
-  --sup-2: #eef4f6;
-  --linha: #d9e4e8;
-  --tinta: #0f1d24;
-  --tinta-2: #3f5059;
-  --tinta-3: #566770;
+  --sup-2: #e3ecf5;
+  --linha: #d3deea;
+  --tinta: #0b2644;
+  --tinta-2: #364b63;
+  --tinta-3: #50647b;
 
-  --prim: #0a6c7b;
+  --prim: #1d6fb8;
   --prim-tinta: #ffffff;
-  --prim-suave: #dcf0f3;
-  --prim-forte: #07505b;
+  --prim-suave: #e3ecf5;
+  --prim-forte: #0b2644;
 
   --ok: #156a3b;      --ok-fundo: #e1f3e7;      --ok-ponto: #22a55a;
   --at: #7f4c00;      --at-fundo: #fff0d2;      --at-ponto: #f0a21a;
   --pe: #ad231b;      --pe-fundo: #fde6e4;      --pe-ponto: #e5372b;
 
-  --sombra: 0 1px 2px rgba(15, 40, 50, .06), 0 8px 24px rgba(15, 40, 50, .07);
+  --sombra: 0 1px 2px rgba(11, 38, 68, .06), 0 8px 24px rgba(11, 38, 68, .08);
   --raio: 22px;
   --raio-p: 14px;
   --barra-h: 80px;
@@ -32,28 +42,30 @@
 
 @media (prefers-color-scheme: dark) {
   :root[data-tema="auto"] {
-    --fundo: #0a1317;
-    --fundo-grad: radial-gradient(120% 60% at 50% 0%, #133039 0%, #0e1d23 45%, #0a1317 75%);
-    --sup: #12212a; --sup-2: #182b33; --linha: #253942;
-    --tinta: #eaf3f6; --tinta-2: #b9c9d0; --tinta-3: #9bb0b8;
-    --prim: #5cc9d9; --prim-tinta: #03262c; --prim-suave: #133a42; --prim-forte: #8fdde8;
+    --fundo: #06162a;
+    --fundo-grad: radial-gradient(120% 60% at 50% 0%, #123a63 0%, #0b2644 42%, #06162a 78%);
+    --sup: #0e2643; --sup-2: #15314f; --linha: #23425f;
+    --tinta: #eef4fa; --tinta-2: #bccbdc; --tinta-3: #97abc2;
+    --prim: #5ed8ef; --prim-tinta: #06162a; --prim-suave: #133a5c; --prim-forte: #9be8f6;
+    --logo-simbolo: var(--marca-ciano); --logo-palavra: #ffffff;
     --ok: #74dc9e; --ok-fundo: #12321f; --ok-ponto: #3ccf78;
     --at: #f6c35f; --at-fundo: #3a2a0c; --at-ponto: #f0a21a;
     --pe: #ff958c; --pe-fundo: #3f1714; --pe-ponto: #ff5a4e;
-    --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .28);
+    --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .3);
     color-scheme: dark;
   }
 }
 :root[data-tema="escuro"] {
-  --fundo: #0a1317;
-  --fundo-grad: radial-gradient(120% 60% at 50% 0%, #133039 0%, #0e1d23 45%, #0a1317 75%);
-  --sup: #12212a; --sup-2: #182b33; --linha: #253942;
-  --tinta: #eaf3f6; --tinta-2: #b9c9d0; --tinta-3: #9bb0b8;
-  --prim: #5cc9d9; --prim-tinta: #03262c; --prim-suave: #133a42; --prim-forte: #8fdde8;
+  --fundo: #06162a;
+  --fundo-grad: radial-gradient(120% 60% at 50% 0%, #123a63 0%, #0b2644 42%, #06162a 78%);
+  --sup: #0e2643; --sup-2: #15314f; --linha: #23425f;
+  --tinta: #eef4fa; --tinta-2: #bccbdc; --tinta-3: #97abc2;
+  --prim: #5ed8ef; --prim-tinta: #06162a; --prim-suave: #133a5c; --prim-forte: #9be8f6;
+  --logo-simbolo: var(--marca-ciano); --logo-palavra: #ffffff;
   --ok: #74dc9e; --ok-fundo: #12321f; --ok-ponto: #3ccf78;
   --at: #f6c35f; --at-fundo: #3a2a0c; --at-ponto: #f0a21a;
   --pe: #ff958c; --pe-fundo: #3f1714; --pe-ponto: #ff5a4e;
-  --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .28);
+  --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .3);
   color-scheme: dark;
 }
 
@@ -119,7 +131,7 @@ html:not(.com-moldura) .tela { padding-top: max(10px, env(safe-area-inset-top));
 
 /* ---------------- cabeçalho ---------------- */
 .cab { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 4px 2px 6px; }
-.cab h1 { font-size: 30px; font-weight: 800; letter-spacing: -.025em; line-height: 1.1; }
+.cab h1 { font-size: 29px; font-weight: 800; font-stretch: var(--largura-titulo); letter-spacing: -.02em; line-height: 1.1; }
 .cab-sup { font-size: 15px; color: var(--tinta-3); font-weight: 600; }
 .btn-voltar { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--sup); box-shadow: var(--sombra); }
 
@@ -131,7 +143,7 @@ html:not(.com-moldura) .tela { padding-top: max(10px, env(safe-area-inset-top));
   box-shadow: var(--sombra);
   border: 1px solid color-mix(in srgb, var(--linha) 60%, transparent);
 }
-.cartao h2, .secao { font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
+.cartao h2, .secao { font-size: 19px; font-weight: 800; font-stretch: 108%; letter-spacing: -.005em; }
 .secao { margin: 10px 4px 0; }
 .rotulo { font-size: 15px; font-weight: 700; color: var(--tinta-2); }
 .nota { font-size: 15px; color: var(--tinta-3); }
@@ -186,7 +198,7 @@ html:not(.com-moldura) .tela { padding-top: max(10px, env(safe-area-inset-top));
 .temp-cartao { padding: 20px 20px 18px; }
 .temp-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .temp-linha { display: flex; align-items: flex-start; gap: 4px; margin-top: 10px; }
-.temp-num { font-size: 80px; font-weight: 800; letter-spacing: -.045em; line-height: .95; font-variant-numeric: tabular-nums; transition: color .35s; }
+.temp-num { font-size: 80px; font-weight: 800; font-stretch: 108%; letter-spacing: -.04em; line-height: .95; font-variant-numeric: tabular-nums; transition: color .35s; }
 .temp-un { font-size: 28px; font-weight: 700; margin-top: 8px; color: var(--tinta-2); }
 .temp-desc { margin-top: 12px; font-size: 16px; color: var(--tinta-2); font-weight: 500; }
 .temp-cartao[data-status="fora"] .temp-num { color: var(--pe); }
@@ -262,22 +274,23 @@ html:not(.com-moldura) .tela { padding-top: max(10px, env(safe-area-inset-top));
 /* ---------------- tela de bloqueio (exemplo) ---------------- */
 .bloqueio {
   position: relative; border-radius: 26px; overflow: hidden; padding: 22px 14px 18px; color: #fff;
-  background: radial-gradient(120% 90% at 20% 0%, #2f8c9b 0%, #0d4a55 45%, #082a33 100%);
+  background: radial-gradient(120% 90% at 20% 0%, #2a7fc7 0%, #0f3a66 45%, #0b2644 100%);
   box-shadow: var(--sombra);
 }
-.bloqueio::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 85% 85%, rgba(140, 220, 255, .25), transparent); pointer-events: none; }
+.bloqueio::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 85% 85%, rgba(94, 216, 239, .28), transparent); pointer-events: none; }
 .bloqueio-data { text-align: center; font-size: 15px; font-weight: 600; opacity: .92; }
 .bloqueio-hora { text-align: center; font-size: 64px; font-weight: 700; letter-spacing: -.03em; line-height: 1; margin: 2px 0 18px; font-variant-numeric: tabular-nums; }
 .notif {
   position: relative; z-index: 1; display: flex; gap: 10px; align-items: flex-start;
-  background: rgba(255, 255, 255, .82); color: #10222a;
+  background: rgba(255, 255, 255, .82); color: #0b2644;
   backdrop-filter: blur(14px); border-radius: 18px; padding: 12px;
 }
-.notif-ic { width: 38px; height: 38px; flex: none; border-radius: 10px; background: #0a6c7b; display: grid; place-items: center; color: #fff; }
+.notif-ic { width: 38px; height: 38px; flex: none; border-radius: 10px; background: #0b2644; display: grid; place-items: center; overflow: hidden; }
+.notif-ic img { width: 100%; height: 100%; display: block; }
 .notif-ic svg.ic { width: 22px; height: 22px; }
-.notif-topo { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #3f5059; }
+.notif-topo { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #3a4e66; }
 .notif b { display: block; font-size: 16px; line-height: 1.3; }
-.notif p { font-size: 15px; line-height: 1.35; color: #24363e; }
+.notif p { font-size: 15px; line-height: 1.35; color: #243a54; }
 
 /* ---------------- push dentro do app ---------------- */
 .push {
@@ -288,13 +301,13 @@ html.com-moldura .push { top: 50px; }
 .push.visivel { transform: none; }
 .push .notif { box-shadow: 0 12px 40px rgba(0, 0, 0, .25); background: rgba(255, 255, 255, .94); }
 .push-acoes { display: flex; gap: 8px; margin-top: 8px; }
-.push-acoes button { min-height: 44px; flex: 1; border: 0; border-radius: 12px; font-weight: 800; font-size: 15px; background: #e6eef1; color: #10222a; }
-.push-acoes button.prim { background: #0a6c7b; color: #fff; }
+.push-acoes button { min-height: 44px; flex: 1; border: 0; border-radius: 12px; font-weight: 800; font-size: 15px; background: #e6eef1; color: #0b2644; }
+.push-acoes button.prim { background: #1d6fb8; color: #fff; }
 
 /* ---------------- caneta ---------------- */
 .caneta-hero { text-align: center; padding: 22px 18px; }
 .caneta-ilustra { width: 100%; max-width: 300px; height: auto; margin: 0 auto 8px; display: block; }
-.dias-num { font-size: 64px; font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.dias-num { font-size: 64px; font-weight: 800; font-stretch: 112%; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
 .dias-rot { font-size: 19px; font-weight: 800; margin-top: 4px; }
 .progresso { height: 14px; border-radius: 999px; background: var(--sup-2); overflow: hidden; margin: 16px 0 8px; }
 .progresso i { display: block; height: 100%; border-radius: inherit; background: var(--prim); transition: width .5s; }
@@ -345,13 +358,13 @@ html.com-moldura .push { top: 50px; }
 .tela[data-tela="pareamento"] { padding: 6px 22px 28px; }
 .par { display: flex; flex-direction: column; min-height: 100%; gap: 18px; }
 .par-ilustra { position: relative; display: grid; place-items: center; height: 260px; margin-top: 10px; }
-.par-ilustra svg.estojo { width: 230px; height: auto; position: relative; z-index: 2; filter: drop-shadow(0 14px 22px rgba(10, 60, 70, .22)); }
+.par-ilustra svg.estojo { width: 230px; height: auto; position: relative; z-index: 2; filter: drop-shadow(0 14px 22px rgba(11, 38, 68, .25)); }
 .onda { position: absolute; width: 140px; height: 140px; border-radius: 50%; border: 2px solid var(--prim); opacity: 0; }
 .par[data-passo="buscando"] .onda, .par[data-passo="conectando"] .onda { animation: onda 2.4s ease-out infinite; }
 .par .onda:nth-child(2) { animation-delay: .8s !important; }
 .par .onda:nth-child(3) { animation-delay: 1.6s !important; }
 @keyframes onda { from { transform: scale(.6); opacity: .55; } to { transform: scale(2.3); opacity: 0; } }
-.par h1 { font-size: 30px; font-weight: 800; letter-spacing: -.025em; line-height: 1.12; }
+.par h1 { font-size: 28px; font-weight: 800; font-stretch: var(--largura-titulo); letter-spacing: -.02em; line-height: 1.12; }
 .par .lead { font-size: 17px; color: var(--tinta-2); margin-top: 8px; }
 .par-passos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .par-passos li { display: flex; gap: 12px; align-items: center; font-weight: 600; }
@@ -407,3 +420,12 @@ html.com-moldura .barra::after { content: ""; position: absolute; left: 50%; bot
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; transition-duration: .001s !important; }
 }
+
+/* ---------------- marca ---------------- */
+.logo { display: block; height: 24px; width: auto; }
+.logo .ls { fill: var(--logo-simbolo); }
+.logo .lp { fill: var(--logo-palavra); }
+.slogan { font-size: 12px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--tinta-3); }
+.cab-marca { display: flex; flex-direction: column; gap: 8px; }
+.par-marca { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 8px; }
+.par-marca .logo { height: 30px; }

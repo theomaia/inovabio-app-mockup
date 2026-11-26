@@ -1,6 +1,6 @@
-# InovaBio · mockup do app do estojo térmico
+# Nimblit · mockup do app da caixa térmica portátil
 
-Mockup navegável do app que acompanha o estojo térmico InovaBio para uma caneta de insulina.
+Mockup navegável do app que acompanha o Nimblit, o estojo térmico da InovaBio para uma caneta de insulina.
 É só design: **dados simulados, sem Bluetooth de verdade**. Protótipo de conceito, não é dispositivo médico.
 
 ![Página de apresentação](screens/00-apresentacao.png)
@@ -12,9 +12,13 @@ Mockup navegável do app que acompanha o estojo térmico InovaBio para uma canet
 | `index.html` | Página de apresentação: as 6 telas lado a lado em molduras de celular e o painel de quem apresenta. Clicar numa tela abre o protótipo em tamanho real. |
 | `app.html` | O app em si (390 × 844). Aberto sozinho, mostra um botão **Simular** com o mesmo painel. |
 | `js/estojo3d.js` | Estojo em 3D (three.js 0.170.0 via CDN, import map). Modelado com as medidas reais: caixa 186 × 80 × 40 mm, cavidade 172 × 24 × 24 mm, 3 LEDs de Ø5,4 mm, fendas e entrada USB-C. |
+| `js/marca.js` e `assets/nimblit-*.svg` | Logo Nimblit vetorizada a partir do guia de identidade visual (símbolo, versão clara e escura, ícone do app). |
+| `pitch/` | Slide de pitch (HTML + PNG 3840 × 2160). |
 | `js/sim.js` | Limites de temperatura, histórico simulado (7 dias) e o estado compartilhado entre as telas. |
 | `js/app.js` | Lógica das telas. |
 | `screens/` | PNG de cada tela (390 px, 2×). |
+
+**Identidade visual (guia Nimblit):** navy `#0B2644`, azul `#1D6FB8`, ciano `#5ED8EF`, claro `#E3ECF5`, fundo `#F2F3F7`; tipografia Archivo, larga nos títulos. Verde, âmbar e vermelho ficam só para o status da temperatura.
 
 Os limites são os mesmos do firmware (`prototipo/firmware/estojo_v1/estojo_v1.ino`):
 **verde abaixo de 28 °C, amarelo de 28 a 30 °C, vermelho a partir de 30 °C** (e também em 2 °C ou menos).

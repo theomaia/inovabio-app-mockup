@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Nimblit · pitch do app</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body {
+    font-family: "Archivo", system-ui, sans-serif;
+    color: #eef4fa;
+    background:
+      radial-gradient(900px 700px at 78% 40%, rgba(94, 216, 239, .22), transparent 70%),
+      radial-gradient(700px 500px at 10% 100%, rgba(29, 111, 184, .38), transparent 70%),
+      linear-gradient(135deg, #06162a 0%, #0b2644 45%, #071a30 100%);
+    position: relative;
+  }
+  /* grade sutil de fundo */
+  body::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(1200px 800px at 70% 45%, #000 30%, transparent 80%);
+  }
+
+  .esq { position: absolute; left: 120px; top: 118px; width: 780px; display: flex; flex-direction: column; gap: 34px; }
+  .marca { display: flex; align-items: center; gap: 22px; }
+  .marca svg { height: 46px; width: auto; display: block; }
+  .marca span { color: #5ed8ef; font-weight: 700; font-size: 15px; letter-spacing: .3em; text-transform: uppercase; padding: 8px 16px; border: 1px solid rgba(94,216,239,.35); border-radius: 999px; }
+  h1 { font-size: 60px; line-height: 1.06; font-weight: 800; font-stretch: 112%; letter-spacing: -.025em; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, #9be8f6, #5ed8ef 55%, #e3ecf5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: 27px; line-height: 1.45; color: #bccbdc; font-weight: 500; max-width: 700px; }
+
+  .recursos { display: flex; flex-direction: column; gap: 18px; margin-top: 6px; }
+  .rec { display: flex; align-items: center; gap: 18px; font-size: 24px; font-weight: 700; }
+  .rec i { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: rgba(94,216,239,.1); border: 1px solid rgba(94,216,239,.28); flex: none; }
+  .rec svg { width: 28px; height: 28px; fill: none; stroke: #5ed8ef; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .rec small { display: block; font-size: 19px; font-weight: 500; color: #97abc2; margin-top: 2px; }
+
+  .status { display: flex; gap: 12px; margin-top: 8px; }
+  .chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 999px; font-weight: 800; font-size: 20px; }
+  .chip svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .ok { background: #e1f3e7; color: #156a3b; }
+  .at { background: #fff0d2; color: #7f4c00; }
+  .pe { background: #fde6e4; color: #ad231b; }
+
+  .rodape { position: absolute; left: 120px; right: 120px; bottom: 54px; display: flex; justify-content: space-between; align-items: center; font-size: 18px; color: #8fa6bf; font-weight: 600; }
+  .rodape b { color: #e3ecf5; font-weight: 700; }
+
+  /* celulares */
+  .palco { position: absolute; left: 930px; top: 0; width: 990px; height: 1080px; }
+  .tel {
+    position: absolute; padding: 12px; border-radius: 62px;
+    background: linear-gradient(145deg, #22364f, #040b14);
+    box-shadow: 0 0 0 1.5px #3d526b inset, 0 60px 120px -30px rgba(0,0,0,.7), 0 20px 40px -20px rgba(0,0,0,.5);
+  }
+  .tel img { display: block; border-radius: 50px; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .tel::after { content: ""; position: absolute; top: 24px; left: 50%; transform: translateX(-50%); width: 34%; height: 34px; border-radius: 999px; background: #000; }
+  .t-centro { width: 384px; height: 830px; left: 284px; top: 128px; z-index: 4; }
+  .t-esq { width: 318px; height: 688px; left: 30px; top: 222px; z-index: 2; transform: rotate(-6deg); filter: brightness(.86); }
+  .t-dir { width: 318px; height: 688px; left: 604px; top: 222px; z-index: 2; transform: rotate(6deg); filter: brightness(.86); }
+
+  /* notificação flutuante */
+  .push {
+    position: absolute; z-index: 5; left: 470px; top: 92px; width: 410px;
+    display: flex; gap: 14px; padding: 18px; border-radius: 24px;
+    background: rgba(255,255,255,.94); color: #0b2644;
+    box-shadow: 0 30px 60px -10px rgba(0,0,0,.45);
+    transform: rotate(2deg);
+  }
+  .push .ic { width: 52px; height: 52px; border-radius: 14px; overflow: hidden; flex: none; }
+  .push .ic img { width: 100%; height: 100%; display: block; }
+  .push .topo { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; color: #3a4e66; }
+  .push b { display: block; font-size: 21px; margin-top: 2px; }
+  .push p { font-size: 19px; color: #243a54; line-height: 1.35; }
+
+  /* selo de cuidador */
+  .cuidador {
+    position: absolute; z-index: 3; left: -96px; top: 884px;
+    display: flex; align-items: center; gap: 14px; padding: 14px 22px 14px 14px; border-radius: 999px;
+    background: rgba(11, 38, 68, .86); border: 1px solid rgba(94,216,239,.3); backdrop-filter: blur(10px);
+    font-size: 19px; font-weight: 700; box-shadow: 0 20px 40px -10px rgba(0,0,0,.5);
+  }
+  .cuidador .av { width: 46px; height: 46px; border-radius: 50%; background: #e3ecf5; color: #0b2644; display: grid; place-items: center; font-weight: 800; }
+  .cuidador small { display: block; color: #97abc2; font-weight: 600; font-size: 16px; }
+</style>
+</head>
+<body>
+  <section class="esq">
+    <div class="marca"><span id="logo"></span><span>Caixa térmica portátil</span></div>
+    <h1>Sua insulina na temperatura certa. <em>E você sabendo disso.</em></h1>
+    <p class="lead">O estojo Nimblit resfria a caneta na tomada e protege fora dela. O app mostra a temperatura em tempo real e avisa antes que seja tarde.</p>
+
+    <div class="recursos">
+      <div class="rec"><i><svg viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></svg></i><div>Temperatura ao vivo, por Bluetooth<small>Leitura a cada 3 s, histórico de 24 h e 7 dias</small></div></div>
+      <div class="rec"><i><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></i><div>Alerta no celular e para o cuidador<small>Aviso na tela de bloqueio quando passa de 30 °C</small></div></div>
+      <div class="rec"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i><div>Feito para quem tem mais idade<small>Letra grande, alto contraste, status com texto e ícone</small></div></div>
+    </div>
+
+    <div class="status">
+      <span class="chip ok"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-7"/></svg>Seguro</span>
+      <span class="chip at"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Atenção</span>
+      <span class="chip pe"><svg viewBox="0 0 24 24"><path d="M7.9 2h8.2L22 7.9v8.2L16.1 22H7.9L2 16.1V7.9z"/><path d="M12 7v6M12 17h.01"/></svg>Fora da faixa</span>
+    </div>
+  </section>
+
+  <div class="palco">
+    <div class="tel t-esq"><img src="../screens/02-historico.png" alt=""></div>
+    <div class="tel t-dir"><img src="../screens/03-alertas.png" alt=""></div>
+    <div class="tel t-centro"><img src="../screens/01-inicio.png" alt=""></div>
+
+    <div class="push">
+      <div class="ic"><img src="../assets/icone.svg" alt=""></div>
+      <div><div class="topo"><span>Nimblit</span><span>agora</span></div><b>Atenção à temperatura</b><p>Sua insulina passou de 30&nbsp;°C há 10&nbsp;min.</p></div>
+    </div>
+
+    <div class="cuidador"><span class="av">MS</span><div>Marina também foi avisada<small>Cuidadora · mesmo alerta</small></div></div>
+  </div>
+
+  <footer class="rodape">
+    <span><b>theomaia.github.io/inovabio-app-mockup</b> · mockup navegável · uma solução InovaBio</span>
+    <span>Protótipo de conceito · dados simulados · não é dispositivo médico</span>
+  </footer>
+<script type="module">
+  import { SIMBOLO, PALAVRA, LOGO } from '../js/marca.js';
+  document.getElementById('logo').innerHTML = `<svg viewBox="0 0 ${LOGO.w} ${LOGO.h}" role="img" aria-label="Nimblit"><path fill="#5ED8EF" d="${SIMBOLO.d}"/><path fill="#FFFFFF" fill-rule="evenodd" transform="translate(${SIMBOLO.w + LOGO.gap} ${LOGO.dy})" d="${PALAVRA.d}"/></svg>`;
+</script>
+</body>
+</html>

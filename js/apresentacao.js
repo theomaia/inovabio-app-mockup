@@ -1,5 +1,12 @@
 // Página de apresentação: monta as molduras, o painel e o modal em tamanho real.
 import { criarSimulador, montarPainel } from './sim.js';
+import { SIMBOLO, PALAVRA, LOGO } from './marca.js';
+
+document.querySelectorAll('[data-logo]').forEach((el) => {
+  el.innerHTML = `<svg class="logo" viewBox="0 0 ${LOGO.w} ${LOGO.h}" role="img" aria-label="Nimblit">
+    <path style="fill:var(--logo-simbolo)" d="${SIMBOLO.d}"/>
+    <path style="fill:var(--logo-palavra)" fill-rule="evenodd" transform="translate(${SIMBOLO.w + LOGO.gap} ${LOGO.dy})" d="${PALAVRA.d}"/></svg>`;
+});
 
 const TELAS = [
   { id: 'inicio', nome: 'Início', desc: 'Estojo em 3D, temperatura, status e últimas 6 horas' },

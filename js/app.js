@@ -6,6 +6,20 @@ import {
   gerarHistorico, ajustarFinal, estatisticas, eventosDe, alertasDe,
   criarSimulador, conectarCliente, montarPainel, ESTADO_INICIAL, DISPOSITIVO,
 } from './sim.js';
+import { SIMBOLO, PALAVRA, LOGO } from './marca.js';
+
+// logo Nimblit inline: as cores seguem o tema (variáveis --logo-*)
+export function logoSVG({ simbolo = 'var(--logo-simbolo)', palavra = 'var(--logo-palavra)' } = {}) {
+  return `<svg class="logo" viewBox="0 0 ${LOGO.w} ${LOGO.h}" role="img" aria-label="Nimblit">
+    <path style="fill:${simbolo}" d="${SIMBOLO.d}"/>
+    <path style="fill:${palavra}" fill-rule="evenodd" transform="translate(${SIMBOLO.w + LOGO.gap} ${LOGO.dy})" d="${PALAVRA.d}"/></svg>`;
+}
+document.querySelectorAll('[data-logo]').forEach((el) => { el.innerHTML = logoSVG(); });
+{
+  // logo impressa na frente da caixa, na ilustração do pareamento (versão escura)
+  const g = document.getElementById('par-logo');
+  if (g) g.innerHTML = `<path fill="#5ED8EF" d="${SIMBOLO.d}"/><path fill="#FFFFFF" fill-rule="evenodd" transform="translate(${SIMBOLO.w + LOGO.gap} ${LOGO.dy})" d="${PALAVRA.d}"/>`;
+}
 
 const P = new URLSearchParams(location.search);
 const emFrame = window.self !== window.top;
@@ -77,8 +91,6 @@ document.addEventListener('click', (e) => {
 function relogio() {
   const agora = new Date();
   $('#relogio').textContent = agora.toLocaleTimeString('pt-BR', { hour: 'numeric', minute: '2-digit' });
-  const h = agora.getHours();
-  $('#saudacao').textContent = h < 5 ? 'Boa noite' : h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
   $('#bl-hora').textContent = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
   $('#bl-data').textContent = agora.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
 }

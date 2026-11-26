@@ -6,10 +6,9 @@ body.apres {
   padding: 0 24px;
 }
 .ap-cab { max-width: 1480px; margin: 0 auto; padding: 36px 0 20px; display: flex; flex-direction: column; gap: 14px; }
-.ap-marca { display: flex; align-items: center; gap: 14px; }
-.ap-marca img { border-radius: 12px; }
-.ap-sup { font-size: 15px; font-weight: 700; color: var(--tinta-3); }
-.ap-cab h1 { font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.ap-marca { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.ap-logo .logo { height: 40px; }
+.ap-cab h1 { font-size: clamp(30px, 4vw, 46px); font-weight: 800; font-stretch: var(--largura-titulo); letter-spacing: -.02em; line-height: 1.05; margin-top: 6px; }
 .ap-lead { max-width: 72ch; font-size: 17px; color: var(--tinta-2); }
 .ap-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .ap-tags span { padding: 6px 12px; border-radius: 999px; background: var(--sup); font-size: 14px; font-weight: 700; color: var(--tinta-2); box-shadow: var(--sombra); }
@@ -29,8 +28,8 @@ body.apres {
   height: calc(844px * var(--s) + var(--borda) * 2);
   padding: var(--borda);
   border-radius: calc(58px * var(--s) + var(--borda));
-  background: linear-gradient(145deg, #1c2a30, #050a0c);
-  box-shadow: 0 0 0 1.5px #3a4a50 inset, 0 30px 60px -20px rgba(10, 40, 50, .45), 0 12px 24px -12px rgba(10, 40, 50, .3);
+  background: linear-gradient(145deg, #1a2c44, #040b14);
+  box-shadow: 0 0 0 1.5px #34475f inset, 0 30px 60px -20px rgba(11, 38, 68, .45), 0 12px 24px -12px rgba(11, 38, 68, .3);
 }
 .ap-telefone .vidro { position: relative; width: 100%; height: 100%; border-radius: calc(48px * var(--s)); overflow: hidden; background: var(--fundo); }
 .ap-telefone iframe {
@@ -60,7 +59,7 @@ body.apres {
 
 /* modal com o protótipo em tamanho real */
 .ap-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; }
-.ap-modal-fundo { position: absolute; inset: 0; background: rgba(5, 15, 20, .62); backdrop-filter: blur(6px); animation: aparecer .2s ease; }
+.ap-modal-fundo { position: absolute; inset: 0; background: rgba(4, 14, 28, .66); backdrop-filter: blur(6px); animation: aparecer .2s ease; }
 .ap-modal-conteudo { position: relative; display: flex; flex-direction: column; gap: 14px; max-height: 100vh; padding: 16px; animation: subir .3s cubic-bezier(.2, .8, .2, 1); }
 .ap-modal-topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #fff; }
 .ap-modal-topo h2 { font-size: 22px; font-weight: 800; }

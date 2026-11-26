@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>InovaBio · Meu estojo</title>
-  <meta name="description" content="Protótipo navegável do app que acompanha o estojo térmico InovaBio para caneta de insulina. Dados simulados.">
-  <meta name="theme-color" content="#0a6c7b">
+  <title>Nimblit · Meu estojo</title>
+  <meta name="description" content="Protótipo navegável do app Nimblit, a caixa térmica portátil da InovaBio para caneta de insulina. Dados simulados.">
+  <meta name="theme-color" content="#0b2644">
   <link rel="icon" href="assets/icone.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap">
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/painel.css">
   <script type="importmap">
@@ -79,9 +79,9 @@
   <!-- notificação push dentro do app -->
   <div class="push" id="push" role="status" aria-live="assertive">
     <div class="notif">
-      <div class="notif-ic"><svg class="ic"><use href="#i-termo"/></svg></div>
+      <div class="notif-ic"><img src="assets/icone.svg" alt=""></div>
       <div style="flex:1;min-width:0">
-        <div class="notif-topo"><span>InovaBio</span><span>agora</span></div>
+        <div class="notif-topo"><span>Nimblit</span><span>agora</span></div>
         <b id="push-titulo">Atenção à temperatura</b>
         <p id="push-texto">Sua insulina passou de 30 °C há 10 min.</p>
         <div class="push-acoes">
@@ -97,8 +97,8 @@
     <section class="tela" data-tela="inicio" aria-labelledby="t-inicio">
       <div class="pilha">
         <header class="cab">
-          <div>
-            <p class="cab-sup" id="saudacao">Boa tarde</p>
+          <div class="cab-marca">
+            <span data-logo></span>
             <h1 id="t-inicio">Meu estojo</h1>
           </div>
           <button type="button" class="chip" id="chip-ble" data-ir="ajustes" data-on="true">
@@ -183,9 +183,9 @@
           <p class="bloqueio-data" id="bl-data">terça-feira, 25 de novembro</p>
           <p class="bloqueio-hora" id="bl-hora">14:52</p>
           <div class="notif">
-            <div class="notif-ic"><svg class="ic"><use href="#i-termo"/></svg></div>
+            <div class="notif-ic"><img src="assets/icone.svg" alt=""></div>
             <div style="flex:1;min-width:0">
-              <div class="notif-topo"><span>InovaBio</span><span>agora</span></div>
+              <div class="notif-topo"><span>Nimblit</span><span>agora</span></div>
               <b>Atenção à temperatura</b>
               <p>Sua insulina passou de 30 °C há 10 min.</p>
             </div>
@@ -301,7 +301,8 @@
 
         <article class="cartao grupo">
           <h2>Dispositivo</h2>
-          <div class="linha-aj"><div class="txt"><b>Nome</b></div><span class="val" id="d-nome">InovaBio-Estojo</span></div>
+          <div class="linha-aj"><div class="txt"><b>Aparelho</b></div><span class="val">Nimblit</span></div>
+          <div class="linha-aj"><div class="txt"><b>Nome Bluetooth</b></div><span class="val" id="d-nome">InovaBio-Estojo</span></div>
           <div class="linha-aj"><div class="txt"><b>Firmware</b></div><span class="val" id="d-fw">v1 · rev D</span></div>
           <div class="linha-aj"><div class="txt"><b>Sinal</b></div><span class="val" id="d-sinal"></span></div>
           <div class="linha-aj"><div class="txt"><b>Sensor</b></div><span class="val">DS18B20</span></div>
@@ -313,7 +314,7 @@
           <svg class="ic"><use href="#i-info"/></svg>
           <div><b>Protótipo de conceito, não é dispositivo médico.</b><span>Siga sempre a bula da sua insulina e as orientações da sua equipe de saúde.</span></div>
         </div>
-        <p class="nota" style="text-align:center">InovaBio · app de demonstração · dados simulados</p>
+        <p class="nota" style="text-align:center">Nimblit · uma solução InovaBio · app de demonstração · dados simulados</p>
       </div>
     </section>
 
@@ -324,20 +325,25 @@
           <span class="onda"></span><span class="onda"></span><span class="onda"></span>
           <svg class="estojo" viewBox="0 0 240 110">
             <defs>
-              <linearGradient id="pc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a6f78"/><stop offset="1" stop-color="#173f45"/></linearGradient>
-              <linearGradient id="pt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f9fa"/><stop offset="1" stop-color="#cfdde1"/></linearGradient>
+              <linearGradient id="pc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173b63"/><stop offset="1" stop-color="#0b2644"/></linearGradient>
+              <linearGradient id="pt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f9fc"/><stop offset="1" stop-color="#d3deea"/></linearGradient>
             </defs>
             <path d="M22 30h196a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14H22A14 14 0 0 1 8 82V44a14 14 0 0 1 14-14z" fill="url(#pc)"/>
             <path d="M22 22h196a14 14 0 0 1 14 14v0H8v0a14 14 0 0 1 14-14z" fill="url(#pt)"/>
-            <g fill="#0b1416" opacity=".9"><rect x="26" y="50" width="4" height="28" rx="2"/><rect x="35" y="50" width="4" height="28" rx="2"/><rect x="44" y="50" width="4" height="28" rx="2"/><rect x="53" y="50" width="4" height="28" rx="2"/></g>
+            <g fill="#04101e" opacity=".9"><rect x="26" y="50" width="4" height="28" rx="2"/><rect x="35" y="50" width="4" height="28" rx="2"/><rect x="44" y="50" width="4" height="28" rx="2"/><rect x="53" y="50" width="4" height="28" rx="2"/></g>
             <circle cx="170" cy="64" r="5" fill="#22c55e"/><circle cx="170" cy="64" r="11" fill="#22c55e" opacity=".25"/>
             <circle cx="186" cy="64" r="5" fill="#5a4a1a"/>
             <circle cx="202" cy="64" r="5" fill="#5a2320"/>
+            <g id="par-logo" transform="translate(76 57) scale(.14)"></g>
           </svg>
         </div>
 
+        <div class="par-marca" data-mostrar="inicio">
+          <span data-logo></span>
+          <span class="slogan">Caixa térmica portátil</span>
+        </div>
         <div data-mostrar="inicio">
-          <h1 id="t-par">Vamos conectar seu estojo</h1>
+          <h1 id="t-par">Vamos conectar seu estojo Nimblit</h1>
           <p class="lead">Leva menos de um minuto. Antes de começar:</p>
         </div>
         <ol class="par-passos" data-mostrar="inicio">
@@ -358,7 +364,7 @@
         <ul class="lista" data-mostrar="encontrado" hidden>
           <li class="item achado">
             <div class="item-ic" style="background:var(--prim-suave);color:var(--prim)"><svg class="ic"><use href="#i-estojo"/></svg></div>
-            <div class="item-corpo"><b>InovaBio-Estojo</b><span><span class="sinal" aria-hidden="true"><i style="height:6px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:18px" class="off"></i></span>Sinal bom · perto</span></div>
+            <div class="item-corpo"><b>Nimblit</b><span style="font-size:14px;color:var(--tinta-3)">InovaBio-Estojo</span><span><span class="sinal" aria-hidden="true"><i style="height:6px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:18px" class="off"></i></span>Sinal bom · perto</span></div>
           </li>
         </ul>
 
@@ -368,7 +374,7 @@
         </div>
 
         <div data-mostrar="pronto" hidden>
-          <h1>Pronto! Estojo conectado.</h1>
+          <h1>Pronto! Seu estojo Nimblit está conectado.</h1>
           <p class="lead">A partir de agora você vê a temperatura da sua insulina aqui e recebe um aviso se ela passar de 30 °C.</p>
         </div>
 

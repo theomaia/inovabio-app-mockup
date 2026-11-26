@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { SIMBOLO, PALAVRA, LOGO, CORES } from './marca.js';
 
 const MM = 0.01;                 // 1 unidade da cena = 100 mm
 const CAIXA = { c: 186, l: 80, corpo: 38, tampa: 2, r: 11 };
@@ -85,16 +86,35 @@ function texturaSombra() {
   return t;
 }
 
+/** Logo Nimblit (versão escura: símbolo ciano + palavra branca) como textura. */
+function texturaLogo() {
+  const escala = 6;                                // px por unidade do SVG
+  const c = document.createElement('canvas');
+  c.width = Math.ceil(LOGO.w * escala); c.height = Math.ceil(LOGO.h * escala);
+  const ctx = c.getContext('2d');
+  ctx.scale(escala, escala);
+  ctx.fillStyle = CORES.ciano;
+  ctx.fill(new Path2D(SIMBOLO.d));
+  ctx.translate(SIMBOLO.w + LOGO.gap, LOGO.dy);
+  ctx.fillStyle = '#ffffff';
+  ctx.fill(new Path2D(PALAVRA.d), 'evenodd');
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+}
+
 // ------------------------------------------------------------ o modelo
 function construirEstojo() {
   const raiz = new THREE.Group();
   raiz.name = 'estojo';
 
-  const matCorpo = new THREE.MeshPhysicalMaterial({ color: 0x1d5961, roughness: 0.42, metalness: 0, clearcoat: 0.35, clearcoatRoughness: 0.5 });
-  const matTampa = new THREE.MeshPhysicalMaterial({ color: 0xdfe9ec, roughness: 0.38, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.35 });
+  // cores da identidade Nimblit: corpo navy, tampa no tom claro
+  const matCorpo = new THREE.MeshPhysicalMaterial({ color: 0x0d2a4d, roughness: 0.4, metalness: 0, clearcoat: 0.4, clearcoatRoughness: 0.45 });
+  const matTampa = new THREE.MeshPhysicalMaterial({ color: 0xe3ecf5, roughness: 0.38, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.35 });
   const matEscuro = new THREE.MeshStandardMaterial({ color: 0x0b1416, roughness: 0.8 });
-  const matIsopor = new THREE.MeshStandardMaterial({ color: 0xd9e3e7, roughness: 0.95, emissive: 0x58c4ff, emissiveIntensity: 0 });
-  const matFundoCav = new THREE.MeshStandardMaterial({ color: 0xc9d6dc, roughness: 0.9, emissive: 0x58c4ff, emissiveIntensity: 0 });
+  const matIsopor = new THREE.MeshStandardMaterial({ color: 0xd9e3e7, roughness: 0.95, emissive: 0x5ed8ef, emissiveIntensity: 0 });
+  const matFundoCav = new THREE.MeshStandardMaterial({ color: 0xc9d6dc, roughness: 0.9, emissive: 0x5ed8ef, emissiveIntensity: 0 });
 
   // corpo com o furo da cavidade (paredes de isopor entram nele)
   const formaCorpo = contornoArredondado(new THREE.Shape(), CAIXA.c - 2, CAIXA.l - 2, CAIXA.r - 1);
@@ -128,6 +148,19 @@ function construirEstojo() {
     f.position.set(-80 + i * 6.2, 20, CAIXA.l / 2 - 0.85);
     raiz.add(f);
   }
+
+  // logo na face da frente, no espaço entre as fendas (até x ≈ −54) e os LEDs (a partir de x ≈ 51)
+  const larguraLogo = 70;                                   // mm
+  const alturaLogo = (larguraLogo * LOGO.h) / LOGO.w;       // ≈ 12,9 mm
+  const logo = new THREE.Mesh(
+    new THREE.PlaneGeometry(larguraLogo, alturaLogo),
+    new THREE.MeshStandardMaterial({
+      map: texturaLogo(), transparent: true, roughness: 0.55, metalness: 0,
+      polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2,
+    }),
+  );
+  logo.position.set(-1.5, LED_Y - 0.5, CAIXA.l / 2 + 0.06);
+  raiz.add(logo);
 
   // LEDs Ø5,4 com aro escuro
   const leds = {};
@@ -191,12 +224,12 @@ function construirEstojo() {
   raiz.add(caneta);
 
   // luz fria do resfriamento dentro da cavidade
-  const luzFria = new THREE.PointLight(0x7fd8ff, 0, 160, 1.6);
+  const luzFria = new THREE.PointLight(0x5ed8ef, 0, 160, 1.6);
   luzFria.position.set(0, CAIXA.corpo + 6, CAV.z);
   raiz.add(luzFria);
   const nevoa = new THREE.Mesh(
     new THREE.PlaneGeometry(CAV.c + 20, CAV.l + 26),
-    new THREE.MeshBasicMaterial({ map: texBrilho, color: 0x7fd8ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }),
+    new THREE.MeshBasicMaterial({ map: texBrilho, color: 0x5ed8ef, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }),
   );
   nevoa.rotation.x = -Math.PI / 2;
   nevoa.position.set(0, CAIXA.corpo - 6, CAV.z);
@@ -264,7 +297,7 @@ async function tentarArquivoExterno() {
         const { STLLoader } = await import('three/addons/loaders/STLLoader.js');
         const geo = await new STLLoader().loadAsync(url);
         geo.computeVertexNormals();
-        obj = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color: 0x1d5961, roughness: 0.45, clearcoat: 0.3 }));
+        obj = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color: 0x163a63, roughness: 0.45, clearcoat: 0.3 }));
         obj.rotation.x = -Math.PI / 2; // STL costuma vir com Z para cima
       } else {
         const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
